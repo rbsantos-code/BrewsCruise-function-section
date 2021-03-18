@@ -63,6 +63,7 @@ function findBrewery(city) {
             names.innerHTML = "* Brewery: " + nameData;
             labelsEl[i].append(names);
 
+
             // get Brew Type
             var type = data[i].brewery_type;
             var brewType = document.createElement("h2");
@@ -78,15 +79,25 @@ function findBrewery(city) {
             brewAddy.innerHTML = "address: " + address;
             labelsEl[i].append(brewAddy);
 
+            // Create Add Button to add to Local Storage
+
+            var localAdd = document.createElement("a");
+            localAdd.setAttribute("class", "button is-info");
+            localAdd.setAttribute("id", "localAddBtn");
+
+            localAdd.innerHTML = "Add";
+            labelsEl[i].append(localAdd);
+
             // get Website
 
             var website = data[i].website_url;
             var webAddress = document.createElement("a");
-            webAddress.classList.add("button", "is-white");
+            webAddress.classList.add("button", "is-info");
+            webAddress.setAttribute("id", "websiteBtn")
             webAddress.setAttribute("href", data[i].website_url);
            
 
-            webAddress.innerHTML = website;
+            webAddress.innerHTML = "Website";
             labelsEl[i].append(webAddress);
 
 
@@ -94,14 +105,21 @@ function findBrewery(city) {
             var lat = data[i].latitude;
             var lon = data[i].longitude;
             var title = data[i].name;
-            names.dataset.lat = lat;
-            names.dataset.lon = lon;
-            names.dataset.title = title;
-            names.dataset.address = address;
+            localAdd.dataset.lat = lat;
+            localAdd.dataset.lon = lon;
+            localAdd.dataset.title = title;
+            localAdd.dataset.address = address;
 
-
+            // Click Event to call GetMap on Names
             names.addEventListener("click", function() {
                 GetMap(this.dataset.lat,this.dataset.lon,this.dataset.title,this.dataset.address);
+
+            })
+
+            localAdd.addEventListener("click", function() {
+                
+                // set to Local Storage
+                localStorage.setItem("brew-name", JSON.stringify(this.dataset.title))
             })
 
         }
@@ -154,8 +172,7 @@ function findBrewery(city) {
 
 
 
-
-     // Experiement with BART API---------
+     // Experiement with BART API (NOT IN USE)---------
 
     //  var bartKey = "MW9S-E7SL-26DU-VV8V";
     //  var bartURL = "http://api.bart.gov/api/stn.aspx?cmd=stns&key=" + bartKey + "&json=y";

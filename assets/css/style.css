@@ -4,24 +4,24 @@
     width: 50%;
 }
 
-.map {
+/* .map {
     padding-top: 50px;
     padding-right: 10px;
     padding-bottom: 10px;
     height: 250px;
     width: 300px;
-}
+} */
 
-#largeMapLink {
-    color: black;
-    text-decoration: solid;
-}
-
-#dirMapLink {
-    color: black;
-    text-decoration: solid;
-}
 
 .button {
     font-size: small;
+}
+
+#localAddBtn {
+    font-size: xx-small;
+}
+
+#websiteBtn {
+    font-size: xx-small;
+    margin-left: 10px;
 }
