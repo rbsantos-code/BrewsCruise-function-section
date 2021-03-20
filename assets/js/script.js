@@ -118,8 +118,14 @@ function findBrewery(city) {
 
             localAdd.addEventListener("click", function() {
                 
+                var namesValue = [this.dataset.title];
+                console.log("namesValue", namesValue);
+                var namesArray = JSON.parse(localStorage.getItem("brew-name")) || [];
+                console.log("namesArray", namesArray);
+                namesArray.push(namesValue);
+                
                 // set to Local Storage
-                localStorage.setItem("brew-name", JSON.stringify(this.dataset.title))
+                localStorage.setItem("brew-name", JSON.stringify(namesArray))
             })
 
         }

@@ -1,20 +1,23 @@
 
 var favoritesEl = document.querySelector(".favorites");
 
-var favorites = JSON.parse(localStorage.getItem("brew-name")) | [];
+// Grab brew names from local storage (array)
+var favorites = JSON.parse(localStorage.getItem("brew-name"));
 console.log("favorites", favorites)
 
-// Grab brew names from local storage
+// Grab brew names from local storage (string)
 var barName = localStorage.getItem("brew-name");
 console.log("name", barName);
 
 // Function to show brewery name on page
-function showBrew() {
-    // favoritesEl.innerHTML = "";
-    favoritesEl.innerHTML = "Brewery: " + barName;
 
+function showBrewToo() {
+    favoritesEl.innerHTML = "";
+    for (var i = 0; i < favorites.length; i++) {
+       favoritesEl.innerHTML = "Brewery: " + favorites;
+    }
 }
-showBrew();
+
 
 // BUTTON FUNCTION SECTION --------
 
@@ -22,16 +25,15 @@ showBrew();
 var clearBtn = document.querySelector("#clearBtn");
 
 clearBtn.addEventListener("click", function() {
-    // localStorage.clear();
+    localStorage.clear();
+    favorites = [];
     favoritesEl.innerHTML = "";
 })
 
-// refresh page function
-function refreshPage() {
-    window.location.reload();
-}
 
 // Refesh/Show button section
 var showBtn = document.querySelector("#showBtn");
 
-showBtn.addEventListener("click", refreshPage);
+showBtn.addEventListener("click", function() {
+    showBrewToo();
+});
